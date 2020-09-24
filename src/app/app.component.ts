@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import { PeliculasService } from './services/peliculas.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'peliculas-app';
+
+  constructor(
+    private peliculasService: PeliculasService
+  ){
+      this.peliculasService.getPopulares().subscribe(
+        resp => {
+          console.log(resp);
+        }
+      );
+  }
 }
